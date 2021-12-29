@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
-<extension key="com.egcc.egccsearch" type="module">
-  <file>egccsearch</file>
-  <name>Custom Search</name>
+<extension key="core.josiahventure" type="module">
+  <file>josiahventure</file>
+  <name>Core extension</name>
   <description>FIXME</description>
   <license>AGPL-3.0</license>
   <maintainer>
@@ -19,6 +19,6 @@
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
   <civix>
-    <namespace>CRM/Egccsearch</namespace>
+    <namespace>CRM/JosiahVenture</namespace>
   </civix>
 </extension>

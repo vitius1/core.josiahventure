@@ -1,9 +1,29 @@
 <?xml version="1.0"?>
 <menu>
   <item>
-    <path>civicrm/redirect</path>
-    <page_callback>CRM_Egccsearch_Page_Redirect</page_callback>
-    <title>Redirect</title>
+    <path>civicrm/CustomActivity</path>
+    <page_callback>CRM_JosiahVenture_Page_CustomActivity</page_callback>
+    <title>CustomActivity</title>
     <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+     <path>civicrm/ajax/ActivityList</path> 
+     <page_callback>CRM_JosiahVenture_Ajax_ActivityList::ajax</page_callback>
+     <access_arguments>access CiviCRM</access_arguments>
+  </item>
+  <item>
+     <path>civicrm/ajax/RelationshipList</path>
+     <page_callback>CRM_JosiahVenture_Ajax_RelationshipList::ajax</page_callback>
+     <access_arguments>access CiviCRM</access_arguments>
+  </item> 
+  <item>
+     <path>civicrm/ajax/AddToMyContact</path>
+     <page_callback>CRM_JosiahVenture_Ajax_AddToMyContact::ajax</page_callback>
+     <access_arguments>access CiviCRM</access_arguments>
+  </item> 
+  <item>
+     <path>civicrm/ajax/ToolsList</path> 
+     <page_callback>CRM_JosiahVenture_Ajax_ToolsList::ajax</page_callback>
+     <access_arguments>access CiviCRM</access_arguments>
   </item>
 </menu>

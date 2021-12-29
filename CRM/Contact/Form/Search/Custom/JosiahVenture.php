@@ -14,7 +14,7 @@
  * @package CRM
  * @copyright CiviCRM LLC https://civicrm.org/licensing
  */
-class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_Custom_Base implements CRM_Contact_Form_Search_Interface {
+class CRM_Contact_Form_Search_Custom_JosiahVenture extends CRM_Contact_Form_Search_Custom_Base implements CRM_Contact_Form_Search_Interface {
 
   protected $_formValues;
 
@@ -109,6 +109,19 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
    * The form consists of an autocomplete field to select an organization.
    */
   public function buildForm(&$form) {
+    
+    
+    $group_default="";
+    
+    
+    if(isset($_GET["group"])) {
+      if($_GET["group"]==0) {
+        
+      } else {
+        $group_default=$_GET["group"];
+      }  
+    } 
+    
     $andOr = [
       '1' => ts('AND'),
       '0' => ts('OR')
@@ -126,6 +139,7 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
     $form->addElement('select', 'group', ts('Group'), $group, ['class' => 'crm-select2 huge','multiple' => 'multiple','placeholder' => '- any group -']);
     $form->addRadio('groupRadio', ts(''), $andOr, ['class' => 'crm-form-radio']);
     $form->setDefaults(array('groupRadio'=>'1'));
+    $form->setDefaults(array('group'=>$group_default));
     //$form->addElement('select', 'relationship', ts('Having this relationship'), $this->GetRelationship(), ['class' => 'crm-select2 huge']);
 
     $form->addElement('select', 'event', ts('Event'), $this->GetEvent(), ['class' => 'crm-select2 huge','multiple' => 'multiple','placeholder' => '- any event -']);
@@ -152,7 +166,7 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
    * @return string
    */
   public function templateFile() {
-    return 'CRM/Contact/Form/Search/Custom/EgccSearch.tpl';
+    return 'CRM/Contact/Form/Search/Custom/JosiahVenture.tpl';
   }
 
   /**
@@ -187,13 +201,62 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
    
      // Define GROUP BY here if needed.
      $grouping = "c.id, c.sort_name, e.email, CONCAT_WS(' - ',co.name ,pr.name)";
-   
-     $sql = "
-             SELECT $select
-             FROM   $from
-             WHERE  $where
-             GROUP BY $grouping
-             ";
+     if(isset($_GET["group"])) {
+       $g=$_GET['group'];
+       if ($g=="my_people") {
+         $session = CRM_Core_Session::singleton();
+         $id = $session->get('ufID');  
+         
+         $name = civicrm_api3('UFMatch', 'getsingle', [
+           'return' => ["uf_name"],
+           'id' => $id,
+         ]);
+         
+         if(strpos($name["uf_name"], '@') !== false) {
+           $group_name = explode("@", $name["uf_name"])[0];
+         } else {
+           $group_name = $name["uf_name"];
+         }      
+         $group_name.=" My People";
+         
+         $group = civicrm_api3('Group', 'get', [
+           'title' => $group_name,
+           'description' => "My People",
+         ]);
+         if($group["is_error"]==0 && isset($group["id"])){
+           $g=$group["id"];
+         }  
+       }
+       $ssGroup = new CRM_Contact_DAO_Group();
+       $ssGroup->id = $g;
+       if (!$ssGroup->find(TRUE)) {
+         //CRM_Core_Error::fatal();
+       }
+       // load smart group IMPORTANT
+       CRM_Contact_BAO_GroupContactCache::load($ssGroup);
+       
+       $where="(c.id in (select contact_id
+                   from civicrm_group_contact
+                   where group_id = {$g})
+                   OR
+                   c.id in (select contact_id
+                   from civicrm_group_contact_cache
+                   where group_id = {$g}))";
+       $sql = "
+               SELECT $select
+               FROM   $from
+               WHERE  $where
+               GROUP BY $grouping
+               ";
+     } else {
+       $sql = "
+               SELECT $select
+               FROM   $from
+               WHERE  $where
+               GROUP BY $grouping
+               ";
+     }
+     
              
              //for only contact ids ignore order.
              if (!$justIDs) {
@@ -232,6 +295,7 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
    */
    public function from() {
      return "civicrm_contact c
+             join civicrm_contact contact_a on c.id=contact_a.id
              left join civicrm_email e ON c.id = e.contact_id and e.is_primary=1
              left join civicrm_address a on c.id = a.contact_id and a.is_primary=1
              left join civicrm_country co on a.country_id = co.id
@@ -322,10 +386,6 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
          // load smart group IMPORTANT
          CRM_Contact_BAO_GroupContactCache::load($ssGroup);
          
-         $result = civicrm_api3('Group', 'getsingle', [
-           'return' => ["where_clause"],
-           'id' => $g,
-         ]);
          $pom[]="(c.id in (select contact_id
                      from civicrm_group_contact
                      where group_id = {$g})
@@ -376,7 +436,7 @@ class CRM_Contact_Form_Search_Custom_EgccSearch extends CRM_Contact_Form_Search_
        foreach ($event as $e) {
          $pom[]="c.id in (select contact_id
                      from civicrm_participant
-                     where event_id = {$e} AND status_id=2)";
+                     where event_id = {$e} AND (status_id=2 OR status_id=1 OR status_id=17))";
        }
        if($eventRadio==1){
          $pom2=implode(' AND ', $pom);

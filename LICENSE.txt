@@ -1,4 +1,4 @@
-Package: com.egcc.egccsearch
+Package: core.JosiahVenture
 Copyright (C) 2021, FIXME <FIXME>
 Licensed under the GNU Affero Public License 3.0 (below).
 

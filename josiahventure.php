@@ -1,8 +1,8 @@
 <?php
 
-require_once 'egccsearch.civix.php';
+require_once 'josiahventure.civix.php';
 // phpcs:disable
-use CRM_Egccsearch_ExtensionUtil as E;
+use CRM_josiahventure_ExtensionUtil as E;
 // phpcs:enable
 
 /**
@@ -10,8 +10,8 @@ use CRM_Egccsearch_ExtensionUtil as E;
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function egccsearch_civicrm_config(&$config) {
-  _egccsearch_civix_civicrm_config($config);
+function josiahventure_civicrm_config(&$config) {
+  _josiahventure_civix_civicrm_config($config);
 }
 
 /**
@@ -19,8 +19,8 @@ function egccsearch_civicrm_config(&$config) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function egccsearch_civicrm_xmlMenu(&$files) {
-  _egccsearch_civix_civicrm_xmlMenu($files);
+function josiahventure_civicrm_xmlMenu(&$files) {
+  _josiahventure_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -28,8 +28,8 @@ function egccsearch_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function egccsearch_civicrm_install() {
-  _egccsearch_civix_civicrm_install();
+function josiahventure_civicrm_install() {
+  _josiahventure_civix_civicrm_install();
 }
 
 /**
@@ -37,8 +37,8 @@ function egccsearch_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function egccsearch_civicrm_postInstall() {
-  _egccsearch_civix_civicrm_postInstall();
+function josiahventure_civicrm_postInstall() {
+  _josiahventure_civix_civicrm_postInstall();
 }
 
 /**
@@ -46,8 +46,8 @@ function egccsearch_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function egccsearch_civicrm_uninstall() {
-  _egccsearch_civix_civicrm_uninstall();
+function josiahventure_civicrm_uninstall() {
+  _josiahventure_civix_civicrm_uninstall();
 }
 
 /**
@@ -55,8 +55,8 @@ function egccsearch_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function egccsearch_civicrm_enable() {
-  _egccsearch_civix_civicrm_enable();
+function josiahventure_civicrm_enable() {
+  _josiahventure_civix_civicrm_enable();
 }
 
 /**
@@ -64,8 +64,8 @@ function egccsearch_civicrm_enable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  */
-function egccsearch_civicrm_disable() {
-  _egccsearch_civix_civicrm_disable();
+function josiahventure_civicrm_disable() {
+  _josiahventure_civix_civicrm_disable();
 }
 
 /**
@@ -73,8 +73,8 @@ function egccsearch_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function egccsearch_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _egccsearch_civix_civicrm_upgrade($op, $queue);
+function josiahventure_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
+  return _josiahventure_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -85,8 +85,8 @@ function egccsearch_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function egccsearch_civicrm_managed(&$entities) {
-  _egccsearch_civix_civicrm_managed($entities);
+function josiahventure_civicrm_managed(&$entities) {
+  _josiahventure_civix_civicrm_managed($entities);
 }
 
 /**
@@ -98,8 +98,8 @@ function egccsearch_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function egccsearch_civicrm_caseTypes(&$caseTypes) {
-  _egccsearch_civix_civicrm_caseTypes($caseTypes);
+function josiahventure_civicrm_caseTypes(&$caseTypes) {
+  _josiahventure_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -112,8 +112,8 @@ function egccsearch_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function egccsearch_civicrm_angularModules(&$angularModules) {
-  _egccsearch_civix_civicrm_angularModules($angularModules);
+function josiahventure_civicrm_angularModules(&$angularModules) {
+  _josiahventure_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -121,8 +121,8 @@ function egccsearch_civicrm_angularModules(&$angularModules) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function egccsearch_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _egccsearch_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function josiahventure_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
+  _josiahventure_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -132,15 +132,15 @@ function egccsearch_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function egccsearch_civicrm_entityTypes(&$entityTypes) {
-  _egccsearch_civix_civicrm_entityTypes($entityTypes);
+function josiahventure_civicrm_entityTypes(&$entityTypes) {
+  _josiahventure_civix_civicrm_entityTypes($entityTypes);
 }
 
 /**
  * Implements hook_civicrm_themes().
  */
-function egccsearch_civicrm_themes(&$themes) {
-  _egccsearch_civix_civicrm_themes($themes);
+function josiahventure_civicrm_themes(&$themes) {
+  _josiahventure_civix_civicrm_themes($themes);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
@@ -150,7 +150,7 @@ function egccsearch_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
  */
-//function egccsearch_civicrm_preProcess($formName, &$form) {
+//function josiahventure_civicrm_preProcess($formName, &$form) {
 //
 //}
 
@@ -159,8 +159,8 @@ function egccsearch_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-//function egccsearch_civicrm_navigationMenu(&$menu) {
-//  _egccsearch_civix_insert_navigation_menu($menu, 'Mailings', array(
+//function josiahventure_civicrm_navigationMenu(&$menu) {
+//  _josiahventure_civix_insert_navigation_menu($menu, 'Mailings', array(
 //    'label' => E::ts('New subliminal message'),
 //    'name' => 'mailing_subliminal_message',
 //    'url' => 'civicrm/mailing/subliminal',
@@ -168,5 +168,5 @@ function egccsearch_civicrm_themes(&$themes) {
 //    'operator' => 'OR',
 //    'separator' => 0,
 //  ));
-//  _egccsearch_civix_navigationMenu($menu);
+//  _josiahventure_civix_navigationMenu($menu);
 //}
